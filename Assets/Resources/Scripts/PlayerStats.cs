@@ -12,6 +12,16 @@ public class PlayerStats : MonoBehaviour
         
     }
 
+    public void PauseGame ()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame ()
+    {
+        Time.timeScale = 1;
+    }
+
     // Update is called once per frame
     void Update()
     {
