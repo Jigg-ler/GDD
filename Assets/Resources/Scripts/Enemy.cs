@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     int baseSpeed = 2;
     System.Random rnd = new System.Random();
     float timer;
-    int direction = 0;
     int prevDirection;
     int health = 100;
 
@@ -29,24 +28,21 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         #region movement
-        if (timer > 2){
-            timer = 0;
-            prevDirection = direction;
-            direction = rnd.Next(-1,2);
-            while (prevDirection == direction){
-                direction = rnd.Next(-1,2);
-            }
-        }
-        else{
-            timer += Time.deltaTime;
-        }
+        // if (timer > 2){
+        //     timer = 0;
+        //     prevDirection = direction;
+        //     direction = rnd.Next(-1,2);
+        //     while (prevDirection == direction){
+        //         direction = rnd.Next(-1,2);
+        //     }
+        // }
+        // else{
+        //     timer += Time.deltaTime;
+        // }
 
         #region bounds
-        if (transform.position.z > 5 || transform.position.z < -5){
-            direction = -direction;
-        }
-        transform.position += new Vector3((-1 * Time.deltaTime) * baseSpeed, 0, (direction * Time.deltaTime) * baseSpeed);
-        if (transform.position.x < -8){
+        transform.position += new Vector3(0, 0, (1 * Time.deltaTime) * baseSpeed);
+        if (transform.position.z > 2.5f){
             Destroy(gameObject);
         }
         #endregion
@@ -81,6 +77,6 @@ public class Enemy : MonoBehaviour
         Bullet bulletGO = Instantiate(bulletPrefab);
         bulletGO.transform.position = spawnSpot.position;
         //parameters (direction, speed, scale, boolean isFromPlayer)
-        bulletGO.Init(Vector2.down, 5f, 0.15f, false);
+        bulletGO.Init(Vector3.forward, 5f, 0.15f, false);
     }
 }
