@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    [SerializeField]
+    Transform spawnSpot;
+    [SerializeField]
+    Bullet bulletPrefab;
+
     [Header("Player Stats")]
     [Range(3.0f, 5.0f)]
     public float baseSpeed;
@@ -18,6 +24,10 @@ public class Player : MonoBehaviour
         transform.position = new Vector2(0, 2);
        // playerStats = GetComponent<PlayerStats>();
        //Debug.Log(gameObject.tag);
+
+        ShootBullet();
+        //InvokeRepeating("function", seconds before start, interval in seconds)
+        InvokeRepeating("ShootBullet", 0.5f, 0.2f);
     }
 
     // Update is called once per frame
@@ -57,5 +67,11 @@ public class Player : MonoBehaviour
         #endregion
         
         //Debug.Log(transform.position.z);
+    }
+    void ShootBullet(){
+        Bullet bulletGO = Instantiate(bulletPrefab);
+        bulletGO.transform.position = spawnSpot.position;
+        //parameters (direction, speed, scale, boolean isFromPlayer)
+        bulletGO.Init(Vector2.up, 5f, 0.15f, true);
     }
 }
