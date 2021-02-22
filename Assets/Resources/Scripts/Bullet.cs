@@ -22,8 +22,12 @@ public class Bullet : MonoBehaviour
     {
         transform.Translate (dir * speed * Time.deltaTime);
         //deletes a bullet if out of bounds
-        if (transform.position.x >= 20f){
+        if (transform.position.x >= 7f || transform.position.x <= -2f){
             Destroy(gameObject);
         }
+    }
+
+    public int GetDamage(){
+        return 30;
     }
 }

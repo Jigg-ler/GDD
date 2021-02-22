@@ -6,16 +6,23 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField]
+    Transform spawnSpot;
+    [SerializeField]
+    Bullet bulletPrefab;
+
     // Start is called before the first frame update
     int baseSpeed = 2;
     System.Random rnd = new System.Random();
     float timer;
     int direction = 0;
     int prevDirection;
+    int health = 100;
 
     void Start()
     {
-        
+        //InvokeRepeating("function", seconds before start, interval in seconds)
+        InvokeRepeating("ShootBullet", 0.5f, .8f);
     }
 
     // Update is called once per frame
@@ -48,12 +55,32 @@ public class Enemy : MonoBehaviour
         //Debug.Log(direction);
 
     }
+    void Die(){
+        Destroy(gameObject);
+    }
+
+    void TakeDamage(int damage){
+        health -= damage;
+
+        if (health <= 0){
+            Die();
+        }
+    }
 
     void OnTriggerEnter(Collider collision) {
 
-        if (collision.gameObject.tag == "Player"){
-            Debug.Log("BOOMYHAHA");
-            Destroy(gameObject);
+        if (collision.CompareTag("Bullet")){
+            Bullet bullet = collision.GetComponent<Bullet>();
+            if (bullet.isFromPlayer){
+                TakeDamage(bullet.GetDamage());
+            }
         }
+    }
+
+    void ShootBullet(){
+        Bullet bulletGO = Instantiate(bulletPrefab);
+        bulletGO.transform.position = spawnSpot.position;
+        //parameters (direction, speed, scale, boolean isFromPlayer)
+        bulletGO.Init(Vector2.down, 5f, 0.15f, false);
     }
 }
