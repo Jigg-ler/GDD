@@ -7,10 +7,12 @@ public class Bullet : MonoBehaviour
 
     float speed;
 
-    Vector2 dir;
+    int damage = 30;
+
+    Vector3 dir;
     public bool isFromPlayer;
 
-    public void Init(Vector2 myDir, float mySpeed, float scale, bool __isFromPlayer){
+    public void Init(Vector3 myDir, float mySpeed, float scale, bool __isFromPlayer){
         dir = myDir;
         speed = mySpeed;
         transform.localScale *= scale;
@@ -22,12 +24,12 @@ public class Bullet : MonoBehaviour
     {
         transform.Translate (dir * speed * Time.deltaTime);
         //deletes a bullet if out of bounds
-        if (transform.position.x >= 7f || transform.position.x <= -2f){
+        if (transform.position.z >= 2.5f || transform.position.z <= -8){
             Destroy(gameObject);
         }
     }
 
     public int GetDamage(){
-        return 30;
+        return damage;
     }
 }

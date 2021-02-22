@@ -12,41 +12,56 @@ public class Enemy : MonoBehaviour
     Bullet bulletPrefab;
 
     // Start is called before the first frame update
-    int baseSpeed = 2;
+    #region Stats
+    [Header("Enemy Stats")]
+    //////////////////////////////////////////
+    [Range(0,2)]
+    public int tier;
+    //////////////////////////////////////////  
+    [Range(1.0f, 4.0f)]
+    public float baseSpeed;
+    //////////////////////////////////////////
+    [Range(90,150)]    
+    public int health;
+    //////////////////////////////////////////
+    [Range(0.2f, 0.5f)]
+    public float fireRate;
+    #endregion
+
     System.Random rnd = new System.Random();
     float timer;
-    int direction = 0;
     int prevDirection;
-    int health = 100;
 
     void Start()
     {
+        baseSpeed = baseSpeed - 0.5f * tier;
+        health = health + (health / 2 * tier);
+        fireRate = fireRate + 0.5f * tier;
+
         //InvokeRepeating("function", seconds before start, interval in seconds)
-        InvokeRepeating("ShootBullet", 0.5f, .8f);
+        //InvokeRepeating("ShootBullet", 0.5f, fireRate);
+
     }
 
     // Update is called once per frame
     void Update()
     {
         #region movement
-        if (timer > 2){
-            timer = 0;
-            prevDirection = direction;
-            direction = rnd.Next(-1,2);
-            while (prevDirection == direction){
-                direction = rnd.Next(-1,2);
-            }
-        }
-        else{
-            timer += Time.deltaTime;
-        }
+        // if (timer > 2){
+        //     timer = 0;
+        //     prevDirection = direction;
+        //     direction = rnd.Next(-1,2);
+        //     while (prevDirection == direction){
+        //         direction = rnd.Next(-1,2);
+        //     }
+        // }
+        // else{
+        //     timer += Time.deltaTime;
+        // }
 
         #region bounds
-        if (transform.position.z > 5 || transform.position.z < -5){
-            direction = -direction;
-        }
-        transform.position += new Vector3((-1 * Time.deltaTime) * baseSpeed, 0, (direction * Time.deltaTime) * baseSpeed);
-        if (transform.position.x < -8){
+        transform.Translate (Vector3.forward * baseSpeed * Time.deltaTime);
+        if (transform.position.z > 5){
             Destroy(gameObject);
         }
         #endregion
@@ -60,6 +75,7 @@ public class Enemy : MonoBehaviour
     }
 
     void TakeDamage(int damage){
+        Debug.Log(health);
         health -= damage;
 
         if (health <= 0){
@@ -74,6 +90,7 @@ public class Enemy : MonoBehaviour
             if (bullet.isFromPlayer){
                 TakeDamage(bullet.GetDamage());
             }
+            Destroy(collision.gameObject);
         }
     }
 
@@ -81,6 +98,6 @@ public class Enemy : MonoBehaviour
         Bullet bulletGO = Instantiate(bulletPrefab);
         bulletGO.transform.position = spawnSpot.position;
         //parameters (direction, speed, scale, boolean isFromPlayer)
-        bulletGO.Init(Vector2.down, 5f, 0.15f, false);
+        bulletGO.Init(Vector3.forward, 5f, 0.15f, false);
     }
 }

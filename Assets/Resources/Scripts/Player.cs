@@ -16,18 +16,21 @@ public class Player : MonoBehaviour
     [Range(2,5)]
     public int baseHealth;
 
+    [Range(0.1f, 0.45f)]
+    public float fireRate;
+
     
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector2(0, 2);
+        transform.position = new Vector2(0, 0);
        // playerStats = GetComponent<PlayerStats>();
        //Debug.Log(gameObject.tag);
 
         ShootBullet();
         //InvokeRepeating("function", seconds before start, interval in seconds)
-        InvokeRepeating("ShootBullet", 0.5f, 0.2f);
+        InvokeRepeating("ShootBullet", 0.5f, fireRate);
     }
 
     // Update is called once per frame
@@ -35,34 +38,34 @@ public class Player : MonoBehaviour
     {
         #region movement
         if (Input.GetKey("w")){
-            transform.position += new Vector3((1 * Time.deltaTime) * baseSpeed, 0, 0);
+            transform.position += new Vector3(0, 0, (-1 * Time.deltaTime) * baseSpeed);
         }
 
         if (Input.GetKey("s")){
-            transform.position += new Vector3((-1 * Time.deltaTime) * baseSpeed, 0, 0);
-        }
-
-        if (Input.GetKey("a")){
             transform.position += new Vector3(0, 0, (1 * Time.deltaTime) * baseSpeed);
         }
 
+        if (Input.GetKey("a")){
+            transform.position += new Vector3((1 * Time.deltaTime) * baseSpeed, 0, 0);
+        }
+
         if (Input.GetKey("d")){
-            transform.position += new Vector3(0, 0, (-1 * Time.deltaTime) * baseSpeed);
+            transform.position += new Vector3((-1 * Time.deltaTime) * baseSpeed, 0, 0);
         }
         #endregion
 
         #region bounds
-        if (transform.position.x > 5.4f){
-            transform.position = new Vector3(5.4f, transform.position.y, transform.position.z);
+        if (transform.position.x > 2.4f){
+            transform.position = new Vector3(2.4f, transform.position.y, transform.position.z);
         }   
-        if (transform.position.x < -1.5f){
-            transform.position = new Vector3(-1.5f, transform.position.y, transform.position.z);
+        if (transform.position.x < -2.4f){
+            transform.position = new Vector3(-2.4f, transform.position.y, transform.position.z);
         }
-        if (transform.position.z < -5){
-            transform.position = new Vector3(transform.position.x, transform.position.y, -5);
+        if (transform.position.z > 1.5f){
+            transform.position = new Vector3(transform.position.x, transform.position.y, 1.5f);
         }
-        if (transform.position.z > 5){
-            transform.position = new Vector3(transform.position.x, transform.position.y, 5);
+        if (transform.position.z < -6.5f){
+            transform.position = new Vector3(transform.position.x, transform.position.y, -6.5f);
         }
         #endregion
         
@@ -72,6 +75,6 @@ public class Player : MonoBehaviour
         Bullet bulletGO = Instantiate(bulletPrefab);
         bulletGO.transform.position = spawnSpot.position;
         //parameters (direction, speed, scale, boolean isFromPlayer)
-        bulletGO.Init(Vector2.up, 5f, 0.15f, true);
+        bulletGO.Init(Vector3.down, 5f, 0.15f, true);
     }
 }
