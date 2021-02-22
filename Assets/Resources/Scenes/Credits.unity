@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 827257056}
   - component: {fileID: 827257055}
   m_Layer: 5
-  m_Name: SHOPimg
+  m_Name: staff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -454,15 +454,15 @@ RectTransform:
   m_GameObject: {fileID: 827257053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2645601, y: 1.2645601, z: 1.5807}
+  m_LocalScale: {x: 1.1031044, y: 1.1031044, z: 1.3788804}
   m_Children: []
   m_Father: {fileID: 953968522}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 321}
-  m_SizeDelta: {x: 350, y: 119}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 398, y: 1153}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &827257055
 MonoBehaviour:
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 14b3b65d0d25e454fb53e3a1a2e347c6, type: 3}
+  m_Texture: {fileID: 2800000, guid: 89a50ebdbe90d5b4ba610d32e914c01d, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -514,7 +514,7 @@ GameObject:
   - component: {fileID: 953968523}
   - component: {fileID: 953968525}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

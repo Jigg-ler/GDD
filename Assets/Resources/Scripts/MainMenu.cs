@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
@@ -29,6 +30,11 @@ public class MainMenu : MonoBehaviour
     public void Settings()
     {
         SceneManager.LoadScene(3);
+    }
+    
+    public void Credits()
+    {
+        SceneManager.LoadScene(4);
     }
 
     public void PauseGame()
