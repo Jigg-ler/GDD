@@ -12,16 +12,35 @@ public class Enemy : MonoBehaviour
     Bullet bulletPrefab;
 
     // Start is called before the first frame update
-    int baseSpeed = 2;
+    #region Stats
+    [Header("Enemy Stats")]
+    //////////////////////////////////////////
+    [Range(0,2)]
+    public int tier;
+    //////////////////////////////////////////  
+    [Range(1.0f, 4.0f)]
+    public float baseSpeed;
+    //////////////////////////////////////////
+    [Range(90,150)]    
+    public int health;
+    //////////////////////////////////////////
+    [Range(0.2f, 0.5f)]
+    public float fireRate;
+    #endregion
+
     System.Random rnd = new System.Random();
     float timer;
     int prevDirection;
-    int health = 100;
 
     void Start()
     {
+        baseSpeed = baseSpeed - 0.5f * tier;
+        health = health + (health / 2 * tier);
+        fireRate = fireRate + 0.5f * tier;
+
         //InvokeRepeating("function", seconds before start, interval in seconds)
-        InvokeRepeating("ShootBullet", 0.5f, .8f);
+        //InvokeRepeating("ShootBullet", 0.5f, fireRate);
+
     }
 
     // Update is called once per frame
@@ -41,8 +60,8 @@ public class Enemy : MonoBehaviour
         // }
 
         #region bounds
-        transform.position += new Vector3(0, 0, (1 * Time.deltaTime) * baseSpeed);
-        if (transform.position.z > 2.5f){
+        transform.Translate (Vector3.forward * baseSpeed * Time.deltaTime);
+        if (transform.position.z > 5){
             Destroy(gameObject);
         }
         #endregion
@@ -56,6 +75,7 @@ public class Enemy : MonoBehaviour
     }
 
     void TakeDamage(int damage){
+        Debug.Log(health);
         health -= damage;
 
         if (health <= 0){
@@ -70,6 +90,7 @@ public class Enemy : MonoBehaviour
             if (bullet.isFromPlayer){
                 TakeDamage(bullet.GetDamage());
             }
+            Destroy(collision.gameObject);
         }
     }
 

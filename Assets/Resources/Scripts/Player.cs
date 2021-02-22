@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [Range(2,5)]
     public int baseHealth;
 
-    [Range(0.2f, 0.5f)]
+    [Range(0.1f, 0.45f)]
     public float fireRate;
 
     
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(-2.4f, transform.position.y, transform.position.z);
         }
         if (transform.position.z > 1.5f){
-            transform.position = new Vector3(transform.position.x, transform.position.y, -1.5f);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 1.5f);
         }
         if (transform.position.z < -6.5f){
             transform.position = new Vector3(transform.position.x, transform.position.y, -6.5f);
