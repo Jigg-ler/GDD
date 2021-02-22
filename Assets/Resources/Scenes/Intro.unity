@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 1636552868}
   - component: {fileID: 1636552867}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Intro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 1938138031}
   - component: {fileID: 1938138032}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: splash screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
