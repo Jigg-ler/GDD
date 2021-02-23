@@ -84,14 +84,18 @@ public class Player : MonoBehaviour
            if (!bullet.isFromPlayer){
                Destroy(collision.gameObject);
                TakeDamage(bullet.GetDamage());
+        
+        } else if (collision.transform.tag == "Enemy"){
+            Destroy(collision.gameObject);
+            TakeDamage(1);
            }
-           
        }
    }
 
    void TakeDamage(int damage){
         Debug.Log(baseHealth);
         baseHealth -= damage;
+        lifeDisplay.life -= 1;
 
         if (baseHealth <= 0){
             Destroy(gameObject);
@@ -99,5 +103,4 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene(0);
         }
     }
-
 }
