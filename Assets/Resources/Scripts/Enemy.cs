@@ -37,6 +37,9 @@ public class Enemy : MonoBehaviour
         health =  health + (health * tier);
         fireRate = fireRate + 0.5f * tier;
 
+        //gets the script 'Score' of the game object 'scoreDisplay' and stores it as 'score'
+        Score Score = GameObject.Find("scoreDisplay").GetComponent<Score>();
+
         //if (transform.tag == "ShootingEnemy"){
         if (bulletPrefab != null){
             //InvokeRepeating("function", seconds before start, interval in seconds)
@@ -81,6 +84,9 @@ public class Enemy : MonoBehaviour
         health -= damage;
 
         if (health <= 0){
+
+            //scoring || 100, 400, 1000
+            Score.score += 100 + ( 100 * (int)Math.Pow(3, tier));
             Die();
         }
     }
