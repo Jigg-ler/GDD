@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnSpot: {fileID: 0}
   bulletPrefab: {fileID: 0}
+  tier: 0
   baseSpeed: 2
-  health: 120
+  health: 4
   fireRate: 0.25

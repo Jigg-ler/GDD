@@ -128,6 +128,6 @@ MonoBehaviour:
   spawnSpot: {fileID: 0}
   bulletPrefab: {fileID: 0}
   tier: 1
-  baseSpeed: 2
-  health: 120
-  fireRate: 0.25
+  baseSpeed: 3
+  health: 4
+  fireRate: 0.5

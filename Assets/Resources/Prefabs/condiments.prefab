@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 1457068047146288874}
   m_Layer: 0
   m_Name: condiments
-  m_TagString: ShootingEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,5 +161,5 @@ MonoBehaviour:
     type: 3}
   tier: 1
   baseSpeed: 1.5
-  health: 130
-  fireRate: 0.2
+  health: 5
+  fireRate: 0.5

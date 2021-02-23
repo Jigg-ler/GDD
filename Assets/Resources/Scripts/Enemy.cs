@@ -21,26 +21,26 @@ public class Enemy : MonoBehaviour
     [Range(1.0f, 4.0f)]
     public float baseSpeed;
     //////////////////////////////////////////
-    [Range(90,150)]    
+    [Range(3, 6)]    
     public int health;
     //////////////////////////////////////////
-    [Range(0.2f, 0.5f)]
+    [Range(0.4f, 1)]
     public float fireRate;
     #endregion
 
     System.Random rnd = new System.Random();
     float timer;
-    int prevDirection;
 
     void Start()
     {
         baseSpeed = baseSpeed - 0.5f * tier;
-        health = health + (health / 2 * tier);
+        health =  health + (health * tier);
         fireRate = fireRate + 0.5f * tier;
 
-        if (transform.tag == "ShootingEnemy"){
+        //if (transform.tag == "ShootingEnemy"){
+        if (bulletPrefab != null){
             //InvokeRepeating("function", seconds before start, interval in seconds)
-            InvokeRepeating("ShootBullet", 0.5f, 0.8f);
+            InvokeRepeating("ShootBullet", 0.5f, fireRate);
         }
         
     }

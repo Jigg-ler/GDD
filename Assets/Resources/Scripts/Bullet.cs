@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
 
     float speed;
 
-    int damage = 30;
+    int damage = 1;
 
     Vector3 dir;
     public bool isFromPlayer;

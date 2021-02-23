@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -18,8 +20,6 @@ public class Player : MonoBehaviour
 
     [Range(0.1f, 0.45f)]
     public float fireRate;
-
-    
 
     // Start is called before the first frame update
     void Start()
@@ -78,15 +78,26 @@ public class Player : MonoBehaviour
         bulletGO.Init(Vector3.up, 5f, 1f, true);
     }
 
-//    void OnTriggerEnter(Collider collision) {
-//        if (collision.transform.tag == "Bullet"){
-//            Bullet bullet = collision.GetComponent<Bullet>();
-//            if (!bullet.isFromPlayer){
-//                Destroy(collision.gameObject);
-//                TakeDamage(bullet.GetDamage());
-//            }
-//            
-//        }
-//    }
+   void OnTriggerEnter(Collider collision) {
+       if (collision.transform.tag == "Bullet"){
+           Bullet bullet = collision.GetComponent<Bullet>();
+           if (!bullet.isFromPlayer){
+               Destroy(collision.gameObject);
+               TakeDamage(bullet.GetDamage());
+           }
+           
+       }
+   }
+
+   void TakeDamage(int damage){
+        Debug.Log(baseHealth);
+        baseHealth -= damage;
+
+        if (baseHealth <= 0){
+            Destroy(gameObject);
+            new WaitForSeconds(3);
+            SceneManager.LoadScene(0);
+        }
+    }
 
 }

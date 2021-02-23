@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7691320824451759188}
   m_Layer: 0
   m_Name: bbq
-  m_TagString: ShootingEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,5 +161,5 @@ MonoBehaviour:
     type: 3}
   tier: 1
   baseSpeed: 2.5
-  health: 90
-  fireRate: 0.4
+  health: 3
+  fireRate: 0.6
