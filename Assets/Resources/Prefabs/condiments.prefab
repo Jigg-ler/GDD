@@ -160,6 +160,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3104993314506672916, guid: 697a7e29688e5624f8ee4bc8112a590d,
     type: 3}
   tier: 1
-  baseSpeed: 1.5
-  health: 5
+  baseSpeed: 1
+  health: 10
   fireRate: 0.5

@@ -18,10 +18,10 @@ public class Enemy : MonoBehaviour
     [Range(0,2)]
     public int tier;
     //////////////////////////////////////////  
-    [Range(1.0f, 4.0f)]
+    [Range(.5f, 4.0f)]
     public float baseSpeed;
     //////////////////////////////////////////
-    [Range(3, 6)]    
+    [Range(3, 20)]    
     public int health;
     //////////////////////////////////////////
     [Range(0.4f, 1)]
@@ -33,9 +33,9 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        baseSpeed = baseSpeed - 0.5f * tier;
-        health =  health + (health * tier);
-        fireRate = fireRate + 0.5f * tier;
+        // baseSpeed = baseSpeed - 0.5f * tier;     
+        // health =  health + (health * tier);
+        // fireRate = fireRate + 0.5f * tier;
 
         //gets the script 'Score' of the game object 'scoreDisplay' and stores it as 'score'
         Score Score = GameObject.Find("scoreDisplay").GetComponent<Score>();
@@ -66,7 +66,8 @@ public class Enemy : MonoBehaviour
 
         #region bounds
         transform.Translate (Vector3.forward * baseSpeed * Time.deltaTime);
-        if (transform.position.z > 5){
+        //enemies have diff dimensions depending on their tier because of their transform.scale
+        if (transform.position.z > ( 4 + (int)Math.Pow(3, tier) )){
             Destroy(gameObject);
         }
         #endregion
@@ -76,6 +77,11 @@ public class Enemy : MonoBehaviour
 
     }
     void Die(){
+        if (tier == 2){
+            EnemySpawner spawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+            new WaitForSeconds(3);
+            spawner.bossInplay = false;
+        }
         Destroy(gameObject);
     }
 

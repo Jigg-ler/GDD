@@ -10,68 +10,95 @@ public class EnemySpawner : MonoBehaviour
 	public GameObject[] prefabs3;
 
 	private GameObject prefab;
-	private float currentTime = 0f;
+	private int totalSpawnCount = 0;
 	//public static float speed = 10f;
+
+	public bool bossInplay = false;
 
 	// Use this for initialization
 	void Start () {
 
+		Score Score = GameObject.Find("scoreDisplay").GetComponent<Score>();
 		// aysnchronous infinite skyscraper spawning
 		StartCoroutine(SpawnEnemies());
 	}
 
 	// Update is called once per frame
 	void Update () {
-
+	
 	}
 
 	IEnumerator SpawnEnemies() {
 		while (true) {
+			#region spawning
+			if (!bossInplay){
 
-			if ( (currentTime % 11) >= Random.Range(0f, 10f)){
-				prefab = prefabs2[Random.Range(0, prefabs2.Length)];
+				totalSpawnCount += 1;
 
-				if (prefab.name == "hepa_b"){
-					Instantiate(prefab, new Vector3(Random.Range(-5, -.5f), 0, -8),
-					Quaternion.identity);
+				//TIER 2 SPAWN
+				if ( (totalSpawnCount % 11) >= Random.Range(0f, 10f)){
+					prefab = prefabs2[Random.Range(0, prefabs2.Length)];
+
+					if (prefab.name == "hepa_b"){
+						Instantiate(prefab, new Vector3(Random.Range(-5, -.5f), 0, -8),
+						Quaternion.identity);
+					}
+					else if (prefab.name == "condiments"){
+						Instantiate(prefab, new Vector3(Random.Range(0.5f, 5), 0, -8),
+						Quaternion.identity);
+					}
+					else if (prefab.name == "bbq"){
+						Instantiate(prefab, new Vector3(Random.Range(-2, 2), 0, -8),
+						Quaternion.identity);
+					}
+				//BOSS SPAWN
 				}
-				else if (prefab.name == "condiments"){
-					Instantiate(prefab, new Vector3(Random.Range(0.5f, 5), 0, -8),
-					Quaternion.identity);
+				else if (totalSpawnCount % 26 == 0 || Score.score >= 4000 + 50 * totalSpawnCount){
+					prefab = prefabs3[Random.Range(0, prefabs3.Length)];
+					if (prefab.name == "boss_hepa_c"){
+						Instantiate(prefab, new Vector3(Random.Range(-5, -.5f), 0, -8),
+						Quaternion.identity);
+					}
+					else if (prefab.name == "boss_donut"){
+						Instantiate(prefab, new Vector3(Random.Range(0.5f, 5), 0, -8),
+						Quaternion.identity);
+					}
+					else if (prefab.name == "boss_dirty_icec"){
+						Instantiate(prefab, new Vector3(Random.Range(-2, 2), 0, -8),
+						Quaternion.identity);
+					}
+
+				bossInplay = true;
 				}
-				else if (prefab.name == "bbq"){
-					Instantiate(prefab, new Vector3(Random.Range(-2, 2), 0, -8),
-					Quaternion.identity);
+				//TIER 1 SPAWN
+				else{
+				// create a new skyscraper from prefab selection at right edge of screen
+					prefab = prefabs1[Random.Range(0, prefabs1.Length)];
+					if (prefab.name == "hepa_a"){
+						Instantiate(prefab, new Vector3(Random.Range(-4.6f, 0), 0, -8),
+						Quaternion.identity);
+					}
+					else if (prefab.name == "bagel"){
+						Instantiate(prefab, new Vector3(Random.Range(0, 4.5f), 0, -8),
+						Quaternion.identity);
+					}
+					else if (prefab.name == "cone"){
+						Instantiate(prefab, new Vector3(Random.Range(-2.3f, 2.3f), 0, -8),
+						Quaternion.identity);
+					}
 				}
-				//Instantiate(prefabs2[Random.Range(0, prefabs2.Length)], new Vector3(Random.Range(-5, -.5f), 0, -8),
-				//Quaternion.identity);
+
 			}
-			else{
-			// create a new skyscraper from prefab selection at right edge of screen
-				prefab = prefabs1[Random.Range(0, prefabs1.Length)];
-				if (prefab.name == "hepa_a"){
-					Instantiate(prefab, new Vector3(Random.Range(-4.6f, 0), 0, -8),
-					Quaternion.identity);
-				}
-				else if (prefab.name == "bagel"){
-					Instantiate(prefab, new Vector3(Random.Range(0, 4.5f), 0, -8),
-					Quaternion.identity);
-				}
-				else if (prefab.name == "cone"){
-					Instantiate(prefab, new Vector3(Random.Range(-2.3f, 2.3f), 0, -8),
-					Quaternion.identity);
-				}
-			}
+			#endregion
 			// // randomly increase the speed by 1
 			// if (Random.Range(1, 4) == 1) {
 			// 	speed += 1f;
 			// }
 
-			currentTime += Time.deltaTime * 10;
-			//Debug.Log(currentTime);
+			//Debug.Log(totalSpawnCount);
 
 			// wait between 1-5 seconds for a new skyscraper to spawn
-			yield return new WaitForSeconds(Random.Range(1, Mathf.Max(3, Mathf.CeilToInt(5 - currentTime/2) ) ));
+			yield return new WaitForSeconds(Random.Range(1, Mathf.Max(3, Mathf.CeilToInt(5 - totalSpawnCount/2) ) ));
 		}
 	}
 }
