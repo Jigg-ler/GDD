@@ -676,6 +676,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 4dad7c8d901ff2a479ac9ed94815fa4b,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4dad7c8d901ff2a479ac9ed94815fa4b,
+        type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
@@ -1003,9 +1008,11 @@ MonoBehaviour:
   spawnSpot: {fileID: 1507726739}
   bulletPrefab: {fileID: 5130092105721547337, guid: 0b01e0c04c6d6fd498740d21ddf0bbb2,
     type: 3}
+  playerAnimator: {fileID: 0}
   baseSpeed: 3
   baseHealth: 2
   fireRate: 0.4
+  isVulnerable: 1
 --- !u!135 &533968593
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1041,6 +1048,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 379579863}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &533968598
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533968591}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cfa67e70a98fe4348abe29398fd2b0bf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &701653933
 GameObject:
   m_ObjectHideFlags: 0

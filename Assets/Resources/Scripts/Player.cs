@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     Transform spawnSpot;
     [SerializeField]
     Bullet bulletPrefab;
+    public Animator playerAnimator;
 
     [Header("Player Stats")]
     [Range(3.0f, 5.0f)]
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
 
     [Range(0.1f, 0.45f)]
     public float fireRate;
+    public bool isVulnerable;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +40,8 @@ public class Player : MonoBehaviour
         ShootBullet();
         //InvokeRepeating("function", seconds before start, interval in seconds)
         InvokeRepeating("ShootBullet", 0.5f, fireRate);
+
+        playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -86,20 +90,27 @@ public class Player : MonoBehaviour
     }
 
    void OnTriggerEnter(Collider collision) {
-       if (collision.transform.tag == "Bullet"){
-           Bullet bullet = collision.GetComponent<Bullet>();
+       if (collision.transform.tag == "Bullet" && isVulnerable)
+        {
+            Bullet bullet = collision.GetComponent<Bullet>();
            if (!bullet.isFromPlayer){
                Destroy(collision.gameObject);
                TakeDamage(bullet.GetDamage());
-        
-        } else if (collision.transform.tag == "Enemy"){
+                //sets invulnerability with delay
+               StartCoroutine(Invulnerable());
+            }
+        } 
+       if (collision.transform.tag == "Enemy" && isVulnerable)
+        {
             Destroy(collision.gameObject);
             TakeDamage(1);
-           }
-       }
+            //sets invulnerability with delay
+            StartCoroutine(Invulnerable());
+        }
+       
    }
 
-   void TakeDamage(int damage){
+    void TakeDamage(int damage){
         Debug.Log(baseHealth);
         baseHealth -= damage;
         lifeDisplay.life -= 1;
@@ -110,4 +121,17 @@ public class Player : MonoBehaviour
             GameOverScript.Setup(baseHealth);
         }
     }
+    //sets vulnerability to false and creates delay before setting the vulnerablity state to true again
+    public IEnumerator Invulnerable()
+    {
+        isVulnerable = false;
+
+        //triggers blinking animation for the player 
+        playerAnimator.SetBool("isInvulnerable", true);
+        //WaitForSeconds(delay in seconds)
+        yield return new WaitForSeconds(3f);
+        playerAnimator.SetBool("isInvulnerable", false);
+        isVulnerable = true;
+    }
+
 }

@@ -98,7 +98,6 @@ public class Enemy : MonoBehaviour
                 Destroy(collision.gameObject);
                 TakeDamage(bullet.GetDamage());
             }
-            
         }
     }
 
