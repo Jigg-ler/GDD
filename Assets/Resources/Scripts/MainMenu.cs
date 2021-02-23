@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    bool isPaused = false;
     bool isMuted;
 
     public void Menu()
@@ -36,18 +35,6 @@ public class MainMenu : MonoBehaviour
     public void Credits()
     {
         SceneManager.LoadScene(4);
-    }
-
-    public void PauseGame()
-    {
-        if (isPaused) {
-            Time.timeScale = 1;
-            isPaused = false;
-        } else
-        {
-            Time.timeScale = 0;
-            isPaused = true;
-        }
     }
 
     void Start()
