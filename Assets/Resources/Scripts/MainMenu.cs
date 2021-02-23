@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     bool isPaused = false;
+    bool isMuted;
 
     public void Menu()
     {
@@ -47,5 +48,18 @@ public class MainMenu : MonoBehaviour
             Time.timeScale = 0;
             isPaused = true;
         }
+    }
+
+    void Start()
+    {
+        isMuted = PlayerPrefs.GetInt("MUTED") == 1;
+        AudioListener.pause = isMuted;
+    }
+
+    public void Muted()
+    {
+        isMuted =! isMuted;
+        AudioListener.pause = isMuted;
+        PlayerPrefs.SetInt("MUTED", isMuted ? 1 : 0);
     }
 }
