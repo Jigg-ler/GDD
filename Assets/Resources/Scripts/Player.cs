@@ -75,6 +75,18 @@ public class Player : MonoBehaviour
         Bullet bulletGO = Instantiate(bulletPrefab);
         bulletGO.transform.position = spawnSpot.position;
         //parameters (direction, speed, scale, boolean isFromPlayer)
-        bulletGO.Init(Vector3.down, 5f, 0.15f, true);
+        bulletGO.Init(Vector3.up, 5f, 1f, true);
     }
+
+//    void OnTriggerEnter(Collider collision) {
+//        if (collision.transform.tag == "Bullet"){
+//            Bullet bullet = collision.GetComponent<Bullet>();
+//            if (!bullet.isFromPlayer){
+//                Destroy(collision.gameObject);
+//                TakeDamage(bullet.GetDamage());
+//            }
+//            
+//        }
+//    }
+
 }

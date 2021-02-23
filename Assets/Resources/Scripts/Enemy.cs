@@ -38,9 +38,11 @@ public class Enemy : MonoBehaviour
         health = health + (health / 2 * tier);
         fireRate = fireRate + 0.5f * tier;
 
-        //InvokeRepeating("function", seconds before start, interval in seconds)
-        //InvokeRepeating("ShootBullet", 0.5f, fireRate);
-
+        if (transform.tag == "ShootingEnemy"){
+            //InvokeRepeating("function", seconds before start, interval in seconds)
+            InvokeRepeating("ShootBullet", 0.5f, 0.8f);
+        }
+        
     }
 
     // Update is called once per frame
@@ -84,13 +86,13 @@ public class Enemy : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider collision) {
-
-        if (collision.CompareTag("Bullet")){
+        if (collision.transform.tag == "Bullet"){
             Bullet bullet = collision.GetComponent<Bullet>();
             if (bullet.isFromPlayer){
+                Destroy(collision.gameObject);
                 TakeDamage(bullet.GetDamage());
             }
-            Destroy(collision.gameObject);
+            
         }
     }
 
@@ -98,6 +100,6 @@ public class Enemy : MonoBehaviour
         Bullet bulletGO = Instantiate(bulletPrefab);
         bulletGO.transform.position = spawnSpot.position;
         //parameters (direction, speed, scale, boolean isFromPlayer)
-        bulletGO.Init(Vector3.forward, 5f, 0.15f, false);
+        bulletGO.Init(Vector3.up, 5f, 1f, false);
     }
 }
