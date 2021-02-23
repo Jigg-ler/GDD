@@ -3,9 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public GameOverScript GameOverScript;
+
+    public void GameOver()
+    {
+            GameOverScript.Setup(baseHealth);
+    }
 
     [SerializeField]
     Transform spawnSpot;
@@ -100,7 +107,7 @@ public class Player : MonoBehaviour
         if (baseHealth <= 0){
             Destroy(gameObject);
             new WaitForSeconds(3);
-            SceneManager.LoadScene(0);
+            GameOverScript.Setup(baseHealth);
         }
     }
 }
