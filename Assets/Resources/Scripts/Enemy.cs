@@ -24,12 +24,14 @@ public class Enemy : MonoBehaviour
     [Range(3, 20)]    
     public int health;
     //////////////////////////////////////////
-    [Range(0.4f, 1)]
+    [Range(0.4f, 2)]
     public float fireRate;
     #endregion
 
     System.Random rnd = new System.Random();
     float timer;
+
+    Transform player;
 
     void Start()
     {
@@ -37,13 +39,23 @@ public class Enemy : MonoBehaviour
         // health =  health + (health * tier);
         // fireRate = fireRate + 0.5f * tier;
 
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
         //gets the script 'Score' of the game object 'scoreDisplay' and stores it as 'score'
         Score Score = GameObject.Find("scoreDisplay").GetComponent<Score>();
 
         //if (transform.tag == "ShootingEnemy"){
         if (bulletPrefab != null){
             //InvokeRepeating("function", seconds before start, interval in seconds)
-            InvokeRepeating("ShootBullet", 0.5f, fireRate);
+
+            if (transform.tag == "Enemy"){
+                InvokeRepeating("ShootBullet", 0.5f, fireRate);
+
+            } else if (transform.tag == "Boss"){
+                InvokeRepeating("BossShoot1", 0.5f, fireRate);
+                InvokeRepeating("BossShoot2", 1f, fireRate);
+            }
+            
         }
         
     }
@@ -112,4 +124,37 @@ public class Enemy : MonoBehaviour
         //parameters (direction, speed, scale, boolean isFromPlayer)
         bulletGO.Init(Vector3.up, 5f, 1f, false);
     }
+
+    void BossShoot1(){
+        Vector3 dir1 = new Vector3(.75f, 0.75f, 0f);
+        Vector3 dir2 = new Vector3(-0.75f, 0.75f, 0f);
+
+        Bullet bulletGO1 = Instantiate(bulletPrefab);
+        bulletGO1.transform.position = spawnSpot.position;
+        //parameters (direction, speed, scale, boolean isFromPlayer)
+        bulletGO1.Init(dir1, 5f, 2f, false);
+
+        Bullet bulletGO2 = Instantiate(bulletPrefab);
+        bulletGO2.transform.position = spawnSpot.position;
+        bulletGO2.Init(dir2, 5f, 2f, false);
+
+        Bullet bulletGO = Instantiate(bulletPrefab);
+        bulletGO.transform.position = spawnSpot.position;
+        bulletGO.Init(Vector3.up, 5f, 2f, false);
+    }
+
+    void BossShoot2(){
+        Vector3 dir1 = new Vector3(.4f, 1f, 0f);
+        Vector3 dir2 = new Vector3(-0.4f, 1f, 0f);
+
+        Bullet bulletGO1 = Instantiate(bulletPrefab);
+        bulletGO1.transform.position = spawnSpot.position;
+        //parameters (direction, speed, scale, boolean isFromPlayer)
+        bulletGO1.Init(dir1, 5f, 2f, false);
+
+        Bullet bulletGO2 = Instantiate(bulletPrefab);
+        bulletGO2.transform.position = spawnSpot.position;
+        bulletGO2.Init(dir2, 5f, 2f, false);
+    }
+
 }
