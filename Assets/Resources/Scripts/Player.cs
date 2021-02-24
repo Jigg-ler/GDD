@@ -107,6 +107,14 @@ public class Player : MonoBehaviour
             //sets invulnerability with delay
             StartCoroutine(Invulnerable());
         }
+
+        if (collision.transform.tag == "Boss" && isVulnerable)
+        {
+            Destroy(collision.gameObject);
+            TakeDamage(1);
+            //sets invulnerability with delay
+            StartCoroutine(Invulnerable());
+        }
        
    }
 
