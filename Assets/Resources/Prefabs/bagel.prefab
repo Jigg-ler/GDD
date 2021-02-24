@@ -128,6 +128,8 @@ MonoBehaviour:
   spawnSpot: {fileID: 0}
   bulletPrefab: {fileID: -2444445097931804880, guid: fb4dd8a32ba851d4298cba95f605e916,
     type: 3}
+  Powerups:
+  - {fileID: 2616398909972575670, guid: f85200c376e6478418f6d42559489a71, type: 3}
   tier: 0
   baseSpeed: 1.5
   health: 5

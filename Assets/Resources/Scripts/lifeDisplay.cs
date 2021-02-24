@@ -12,7 +12,8 @@ public class lifeDisplay : MonoBehaviour
     private Text display;
     void Start()
     {
-        life = 1;
+        Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        life = player.baseHealth;
         display = GetComponent<Text>();
     }
 

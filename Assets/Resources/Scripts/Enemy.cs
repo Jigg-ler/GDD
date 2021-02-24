@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     Transform spawnSpot;
     [SerializeField]
     Bullet bulletPrefab;
+    [SerializeField]
+    Powerup[] Powerups;
 
     // Start is called before the first frame update
     #region Stats
@@ -89,12 +91,22 @@ public class Enemy : MonoBehaviour
 
     }
     void Die(){
+        Destroy(gameObject);
         if (tier == 2){
+            //POWERUP SPAWN
+            Instantiate(Powerups[0], new Vector3(0, 0, -8.3f),
+			            Quaternion.Euler(-90f, 0f, 0f)); 
+
             EnemySpawner spawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
             new WaitForSeconds(3);
             spawner.bossInplay = false;
         }
-        Destroy(gameObject);
+        // else{
+        //     if (UnityEngine.Random.Range(1,90) <= tier * 10 + 5){
+        //         Instantiate(Powerups[0], new Vector3(transform.position.x, 0, transform.position.z),
+		// 	            Quaternion.Euler(-90f, 0f, 0f)); 
+        //     }
+        // }
     }
 
     void TakeDamage(int damage){
@@ -103,7 +115,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0){
 
             //scoring || 100, 400, 1000
-            Score.score += 100 + ( 100 * (int)Math.Pow(3, tier));
+            Score.score += (100 + ( 100 * (int)Math.Pow(3, tier)));
             Die();
         }
     }

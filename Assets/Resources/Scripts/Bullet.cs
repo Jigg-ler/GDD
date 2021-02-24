@@ -32,4 +32,8 @@ public class Bullet : MonoBehaviour
     public int GetDamage(){
         return damage;
     }
+
+    public void SetDamage(int val){
+        damage = val;
+    }
 }

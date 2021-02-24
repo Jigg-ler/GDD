@@ -10,15 +10,10 @@ public class Player : MonoBehaviour
     public GameOverScript GameOverScript;
     public Score Score;
 
-    public void GameOver()
-    {
-        GameOverScript.Setup(Score.score);
-    }
-
     [SerializeField]
     Transform spawnSpot;
     [SerializeField]
-    Bullet bulletPrefab;
+    public Bullet bulletPrefab;
     public Animator playerAnimator;
 
     [Header("Player Stats")]
@@ -31,12 +26,11 @@ public class Player : MonoBehaviour
     public float fireRate;
     public bool isVulnerable;
 
+
     // Start is called before the first frame update
     void Start()
     {
         transform.position = new Vector2(0, 0);
-       // playerStats = GetComponent<PlayerStats>();
-       //Debug.Log(gameObject.tag);
 
         ShootBullet();
         //InvokeRepeating("function", seconds before start, interval in seconds)
@@ -116,12 +110,21 @@ public class Player : MonoBehaviour
             //sets invulnerability with delay
             StartCoroutine(Invulnerable());
         }
+
+        if (collision.transform.tag == "Powerup")
+        {
+            Debug.Log("BABABOOIE");
+            Powerup powerup = collision.GetComponent<Powerup>();
+            Player player = GetComponent<Player>();
+            powerup.Effect(player);
+            Destroy(collision.gameObject);
+        }
        
    }
 
     void TakeDamage(int damage){
         baseHealth -= damage;
-        lifeDisplay.life -= 1;
+        lifeDisplay.life -= damage;
 
         if (baseHealth <= 0){
             Destroy(gameObject);
@@ -141,6 +144,11 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(3f);
         playerAnimator.SetBool("isInvulnerable", false);
         isVulnerable = true;
+    }
+
+    public void GameOver()
+    {
+        GameOverScript.Setup(Score.score);
     }
 
 }

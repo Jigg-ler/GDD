@@ -127,6 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnSpot: {fileID: 0}
   bulletPrefab: {fileID: 0}
+  Powerups:
+  - {fileID: 2616398909972575670, guid: f85200c376e6478418f6d42559489a71, type: 3}
   tier: 1
   baseSpeed: 1.5
   health: 8

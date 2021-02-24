@@ -98,7 +98,7 @@ public class EnemySpawner : MonoBehaviour
 			//Debug.Log(totalSpawnCount);
 
 			// wait between 1-5 seconds for a new skyscraper to spawn
-			yield return new WaitForSeconds(Random.Range(1, Mathf.Max(3, Mathf.CeilToInt(5 - totalSpawnCount/2) ) ));
+			yield return new WaitForSeconds(Random.Range(3, Mathf.Max(3, Mathf.CeilToInt(5 - totalSpawnCount/2) ) ));
 		}
 	}
 }
