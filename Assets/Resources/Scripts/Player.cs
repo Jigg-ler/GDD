@@ -7,11 +7,11 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public GameOverScript GameOverScript;
+    public Score Score;
 
     public void GameOver()
     {
-            GameOverScript.Setup(baseHealth);
+        Score.Setup(baseHealth);
     }
 
     [SerializeField]
@@ -111,14 +111,14 @@ public class Player : MonoBehaviour
    }
 
     void TakeDamage(int damage){
-        Debug.Log(baseHealth);
         baseHealth -= damage;
         lifeDisplay.life -= 1;
 
         if (baseHealth <= 0){
             Destroy(gameObject);
             new WaitForSeconds(3);
-            GameOverScript.Setup(baseHealth);
+            Score.Setup(baseHealth);
+            Time.timeScale = 0f;
         }
     }
     //sets vulnerability to false and creates delay before setting the vulnerablity state to true again

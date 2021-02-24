@@ -9,7 +9,12 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
 
     public static int score = 0;
-    private Text display;
+    public Text display;
+    
+    public void Setup(int score){
+        gameObject.SetActive(true);
+    }
+
     void Start()
     {
         score = 0;
