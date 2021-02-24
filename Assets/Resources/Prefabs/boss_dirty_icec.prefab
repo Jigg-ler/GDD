@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 1360004162283888394}
   m_Layer: 0
   m_Name: boss_dirty_icec
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,4 +162,4 @@ MonoBehaviour:
   tier: 2
   baseSpeed: 0.5
   health: 16
-  fireRate: 0.4
+  fireRate: 1
