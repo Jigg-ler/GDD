@@ -162,4 +162,4 @@ MonoBehaviour:
   tier: 1
   baseSpeed: 1
   health: 10
-  fireRate: 0.5
+  fireRate: 2
