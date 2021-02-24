@@ -7,20 +7,14 @@ public class MainMenu : MonoBehaviour
 {
     bool isMuted;
 
-    public void Menu()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    public void PlayGame()
-    {
-        SceneManager.LoadScene(1);
-        Time.timeScale = 1f;
-    }
-
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void Shop()
@@ -37,6 +31,13 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(4);
     }
+    
+    public void PlayGame()
+    {
+        SceneManager.LoadScene(5);
+        Time.timeScale = 1f;
+    }
+
 
     void Start()
     {
