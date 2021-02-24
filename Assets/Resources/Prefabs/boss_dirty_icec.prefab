@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnSpot: {fileID: 1360004162377201925}
-  bulletPrefab: {fileID: 3104993314506672916, guid: 697a7e29688e5624f8ee4bc8112a590d,
+  bulletPrefab: {fileID: 347076548291228923, guid: ca8ba31f3f0ef7848adc5c9f4df159c1,
     type: 3}
   tier: 2
   baseSpeed: 0.5

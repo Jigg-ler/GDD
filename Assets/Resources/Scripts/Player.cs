@@ -7,11 +7,12 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public GameOverScript GameOverScript;
     public Score Score;
 
     public void GameOver()
     {
-        Score.Setup(baseHealth);
+        GameOverScript.Setup(Score.score);
     }
 
     [SerializeField]
@@ -125,7 +126,7 @@ public class Player : MonoBehaviour
         if (baseHealth <= 0){
             Destroy(gameObject);
             new WaitForSeconds(3);
-            Score.Setup(baseHealth);
+            GameOver();
             Time.timeScale = 0f;
         }
     }
