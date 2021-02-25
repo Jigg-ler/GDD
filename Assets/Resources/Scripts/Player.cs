@@ -17,26 +17,30 @@ public class Player : MonoBehaviour
     public Animator playerAnimator;
 
     [Header("Player Stats")]
-    [Range(3.0f, 5.0f)]
+    [Range(2.0f, 5.0f)]
     public float baseSpeed;
     [Range(2,5)]
     public int baseHealth;
 
-    [Range(0.1f, 0.45f)]
+    [Range(0.1f, 0.5f)]
     public float fireRate;
     public bool isVulnerable;
+
+    private float xIncrement;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector2(0, 0);
-
+        // transform.position = new Vector2(0, 0);
+        xIncrement = transform.position.x;
         ShootBullet();
         //InvokeRepeating("function", seconds before start, interval in seconds)
         InvokeRepeating("ShootBullet", 0.5f, fireRate);
 
         playerAnimator = GetComponent<Animator>();
+
+        
     }
 
     // Update is called once per frame
@@ -61,11 +65,11 @@ public class Player : MonoBehaviour
         #endregion
 
         #region bounds
-        if (transform.position.x > 2.4f){
-            transform.position = new Vector3(2.4f, transform.position.y, transform.position.z);
+        if (transform.position.x > 2.4f + xIncrement){
+            transform.position = new Vector3(2.4f + xIncrement, transform.position.y, transform.position.z);
         }   
-        if (transform.position.x < -2.4f){
-            transform.position = new Vector3(-2.4f, transform.position.y, transform.position.z);
+        if (transform.position.x < -2.4f + xIncrement){
+            transform.position = new Vector3(-2.4f + xIncrement, transform.position.y, transform.position.z);
         }
         if (transform.position.z > 1.5f){
             transform.position = new Vector3(transform.position.x, transform.position.y, 1.5f);
