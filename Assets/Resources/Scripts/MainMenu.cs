@@ -16,24 +16,19 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void Shop()
-    {
-        SceneManager.LoadScene(2);
-    }
-
     public void Settings()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
     }
     
     public void Credits()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(3);
     }
     
     public void PlayGame()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(4);
         Time.timeScale = 1f;
     }
 
