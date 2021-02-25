@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    bool isMuted;
 
     public void QuitGame()
     {
@@ -41,14 +40,6 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        isMuted = PlayerPrefs.GetInt("MUTED") == 1;
-        AudioListener.pause = isMuted;
-    }
 
-    public void Muted()
-    {
-        isMuted =! isMuted;
-        AudioListener.pause = isMuted;
-        PlayerPrefs.SetInt("MUTED", isMuted ? 1 : 0);
     }
 }
