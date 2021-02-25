@@ -13,7 +13,7 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(!PlayerPrefs.HasKey("mmuted"))
+        if(!PlayerPrefs.HasKey("muted"))
         {
             PlayerPrefs.SetInt("muted", 0);
             Load();
