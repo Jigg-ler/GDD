@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
         //Debug.Log(direction);
 
     }
-    void Die(){
+    public void Die(){
         Destroy(gameObject);
         if (tier == 2){
             //POWERUP SPAWN
@@ -109,7 +109,7 @@ public class Enemy : MonoBehaviour
         // }
     }
 
-    void TakeDamage(int damage){
+    public void TakeDamage(int damage){
         health -= damage;
 
         if (health <= 0){

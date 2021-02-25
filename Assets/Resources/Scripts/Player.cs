@@ -104,7 +104,8 @@ public class Player : MonoBehaviour
         } 
        if (collision.transform.tag == "Enemy" && isVulnerable)
         {
-            Destroy(collision.gameObject);
+            Enemy enemy = collision.GetComponent<Enemy>();
+            enemy.TakeDamage(enemy.health);
             TakeDamage(1);
             //sets invulnerability with delay
             StartCoroutine(Invulnerable());
@@ -112,7 +113,8 @@ public class Player : MonoBehaviour
 
         if (collision.transform.tag == "Boss" && isVulnerable)
         {
-            Destroy(collision.gameObject);
+            Enemy boss = collision.GetComponent<Enemy>();
+            boss.TakeDamage(1);
             TakeDamage(1);
             //sets invulnerability with delay
             StartCoroutine(Invulnerable());
