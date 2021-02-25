@@ -176,8 +176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df688f0c87933ee478c31e31969a6e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameOverScript: {fileID: 0}
-  Score: {fileID: 0}
+  GameOverScript: {fileID: 1835843661693286623, guid: 331071463acf144489476d44aec3c5b6,
+    type: 3}
   spawnSpot: {fileID: 1224224092058919718}
   bulletPrefab: {fileID: 5130092105721547337, guid: 0b01e0c04c6d6fd498740d21ddf0bbb2,
     type: 3}

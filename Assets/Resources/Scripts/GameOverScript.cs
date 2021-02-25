@@ -6,8 +6,13 @@ using UnityEngine.UI;
 public class GameOverScript : MonoBehaviour	
 {	
     public Text pointsText;	
+
+    // void Start(){
+    //     gameObject.SetActive(false);
+    // }
     public void Setup(int score){	
-        gameObject.SetActive(true);	
+        Debug.Log("testste");
+        gameObject.SetActive(true);
         pointsText.text = score.ToString() + "\nPOINTS";	
     }
 }

@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public GameOverScript GameOverScript;
-    public Score Score;
+    GameOverScript GameOverScript;
+    Score Score;
 
     [SerializeField]
     Transform spawnSpot;
@@ -38,9 +38,12 @@ public class Player : MonoBehaviour
         //InvokeRepeating("function", seconds before start, interval in seconds)
         InvokeRepeating("ShootBullet", 0.5f, fireRate);
 
-        playerAnimator = GetComponent<Animator>();
+        // GameOverScript = gameObject.GetComponentInParent<GameOverScript>();
+        // Score = gameObject.GetComponentInParent<Score>();
 
-        
+        playerAnimator = GetComponent<Animator>();
+        GameOverScript = GameObject.Find("GameOverCanvas").transform.Find("GameOverPanel").GetComponent<GameOverScript>();
+        Score = GameOverScript.GetComponent<Score>();
     }
 
     // Update is called once per frame

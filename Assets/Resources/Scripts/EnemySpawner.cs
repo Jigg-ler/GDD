@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour
 
 		Score Score = GameObject.Find("scoreDisplay").GetComponent<Score>();
 		// aysnchronous infinite skyscraper spawning
+		new WaitForSeconds(2);
 		StartCoroutine(SpawnEnemies());
 	}
 

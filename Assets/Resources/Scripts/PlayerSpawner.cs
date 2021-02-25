@@ -8,6 +8,9 @@ public class PlayerSpawner : MonoBehaviour
     public GameObject[] players;
     private GameObject player;
 
+    // public GameOverScript GameOverScript;
+    // public Score Score;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,7 @@ public class PlayerSpawner : MonoBehaviour
             Instantiate(player, new Vector3(1.85f, 0, 0),
 						Quaternion.identity);
         }
+        //player.SetActive(true);
     }
 
     // Update is called once per frame
