@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7913046150351610779}
   - component: {fileID: 7913046150351610781}
   - component: {fileID: 7913046150351610778}
+  - component: {fileID: 2901946261008921035}
   m_Layer: 0
   m_Name: avatar_3
   m_TagString: Player
@@ -146,8 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df688f0c87933ee478c31e31969a6e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameOverScript: {fileID: 1835843661693286623, guid: 331071463acf144489476d44aec3c5b6,
-    type: 3}
   spawnSpot: {fileID: 7913046149885912019}
   bulletPrefab: {fileID: 5130092105721547337, guid: 0b01e0c04c6d6fd498740d21ddf0bbb2,
     type: 3}
@@ -156,6 +155,18 @@ MonoBehaviour:
   baseHealth: 2
   fireRate: 0.3
   isVulnerable: 1
+--- !u!114 &2901946261008921035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6994548019736248657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc1964aeed7b6a4882d9890d1feaf90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7913046149885912018
 GameObject:
   m_ObjectHideFlags: 0
